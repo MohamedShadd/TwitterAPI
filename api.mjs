@@ -1,5 +1,5 @@
-import puppeteer from "puppeteer";
-// import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import fs from "fs";
 import express from "express";
 import path from "path";
@@ -10,7 +10,7 @@ const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 const verificationInput = process.env.VERIFCATION;
 
-// puppeteer.use(StealthPlugin());
+puppeteer.use(StealthPlugin());
 
 const app = express();
 const PORT = process.env.PORT || 10000;
