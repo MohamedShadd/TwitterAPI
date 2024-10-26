@@ -8,7 +8,7 @@ dotenv.config();
 
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
-const verificationInput = process.env.VERIFICATION;
+const verificationInput = process.env.VERIFCATION;
 
 puppeteer.use(StealthPlugin());
 
@@ -21,7 +21,6 @@ app.get("/fetchTweets", async (req, res) => {
   let browser;
   let page;
   let allTweets = [];
-
   const openBrowser = async () => {
     browser = await puppeteer.launch({
       headless: true,
@@ -78,6 +77,7 @@ app.get("/fetchTweets", async (req, res) => {
           console.log("Next button not found");
         }
       });
+      x;
 
       try {
         await page.waitForSelector(
@@ -162,19 +162,7 @@ app.get("/fetchTweets", async (req, res) => {
     res.json({ tweets: allTweets });
   } catch (error) {
     console.error("Error fetching tweets:", error);
-    const screenshotPath = path.resolve("error_screenshot.png");
-
-    // Take a screenshot of the error state
-    if (page) await page.screenshot({ path: screenshotPath, fullPage: true });
-
-    // Convert the image to base64 format
-    const imageBuffer = fs.readFileSync(screenshotPath);
-    const base64Image = imageBuffer.toString("base64");
-
-    res.status(500).json({
-      error: "Failed to fetch tweets.",
-      screenshot: `data:image/png;base64,${base64Image}`,
-    });
+    res.status(500).json({ error: "Failed to fetch tweets." });
   } finally {
     if (browser) await browser.close();
   }
