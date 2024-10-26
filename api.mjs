@@ -167,4 +167,8 @@ app.get("/fetchTweets", async (req, res) => {
   }
 });
 
+app.get("/", async (req, res) => {
+  res.status(201).json({ message: "Server online" });
+});
+
 app.listen(PORT, () => console.log(`API running on port ${PORT}`));
