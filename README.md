@@ -40,7 +40,7 @@
    You should see a message in the console printing
 
    ```console
-   API running on port 3333
+   API running on port 10000
    ```
 
    Now you can call the API using a get request
@@ -49,11 +49,11 @@
 
 ##### OPENING IN BROWSER
 
-You can directly open the link http://localhost:3333/fetchTweets?targetProfile=elonmusk in browser
+You can directly open the link http://localhost:10000/fetchTweets?targetProfile=elonmusk in browser
 
 ##### FETCHING USING POSTMAN
 
-- Create a new `GET` Request using the url http://localhost:3333/fetchTweets
+- Create a new `GET` Request using the url http://localhost:10000/fetchTweets
 - Insert a new Param called **targetProfile** with the value of the profile you are fetching tweets from
 - Press Send to get the request
 
@@ -69,7 +69,7 @@ const targetProfile = "elonmusk";
 const checkForNewTweets = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3333/fetchTweets?targetProfile=${targetProfile}`
+      `http://localhost:10000/fetchTweets?targetProfile=${targetProfile}`
     );
 
     const tweets = response.data.tweets || [];

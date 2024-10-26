@@ -1,25 +1,19 @@
-FROM node:18-slim
+# Use Puppeteer base image
+FROM ghcr.io/puppeteer/puppeteer:23.6.0
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get install -y wget gnupg && \
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list && \
-    apt-get update && \
-    apt-get install -y google-chrome-stable
+# Set environment variables for Puppeteer
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
-# Set Puppeteer environment variables
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
-
-# Install Node dependencies
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-
-# Expose the necessary port
+# Expose the port the app will run on (3333)
 EXPOSE 3333
 
-# Start the app
+# Copy package files and install dependencies
+COPY package*.json ./
+RUN npm ci
+
+# Copy the rest of the app files
+COPY . .
+
+# Start the application
 CMD ["node", "api.mjs"]
