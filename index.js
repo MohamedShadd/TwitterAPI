@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 
 app.get("/fetchTweets", async (req, res) => {
-  const targetProfile = req.query.targetProfile || "fandom_ace";
+  const targetProfile = req.query.targetProfile
   const cookiesFilePath = path.resolve("cookies.json");
   let browser;
   let page;
@@ -81,7 +81,7 @@ app.get("/fetchTweets", async (req, res) => {
       try {
         await page.waitForSelector(
           'input[data-testid="ocfEnterTextTextInput"]',
-          { timeout: 5000 }
+          { timeout: 1500 }
         );
         console.log("Entering verification data...");
         await page.type(
@@ -137,7 +137,7 @@ app.get("/fetchTweets", async (req, res) => {
       waitUntil: "networkidle2",
     });
     await page.evaluate(() => window.scrollBy(0, window.innerHeight * 1.5));
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const tweets = await page.evaluate(() => {
       return Array.from(document.querySelectorAll("article")).map((tweet) => {
