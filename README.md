@@ -9,7 +9,7 @@
 ## Prerequisites
 
 - NodeJS
-- Username, password, and email or phone numnber of twitter account
+- Username, password, and email or phone number of Twitter account
 
 ## Setup
 
