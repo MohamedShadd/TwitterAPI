@@ -1,0 +1,9 @@
+# Ignore everything by default
+*
+
+# Exceptions
+!.env.example
+!index.js
+!package.json
+!README.md
+!.gitignore
