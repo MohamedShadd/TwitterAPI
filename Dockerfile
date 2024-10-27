@@ -50,4 +50,4 @@ RUN npm install
 COPY . ./
 
 
-CMD ["node", "api.mjs"]
+CMD ["node", "index.js"]
