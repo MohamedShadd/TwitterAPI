@@ -1,7 +1,6 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import express from "express";
-import path from "path";
 import dotenv from "dotenv";
 import {initializeBrowser} from "./functions/initializeBrowser.js";
 import {setupPage} from "./functions/setupPage.js";
@@ -10,9 +9,7 @@ import {collectTweets} from "./functions/collectTweets.js";
 
 dotenv.config();
 
-const username = process.env.USERNAME;
-const password = process.env.PASSWORD;
-const verificationInput = process.env.VERIFCATION;
+
 puppeteer.use(StealthPlugin());
 
 const PORT = process.env.PORT || 10000;
@@ -20,7 +17,7 @@ const app = express();
 
 
 app.get("/fetchTweets", async (req, res) => {
-  const targetProfile = req.query.targetProfile;
+  const targetProfile = req.query.targetProfile
   let browser;
   try {
     browser = await initializeBrowser();
