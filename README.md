@@ -82,3 +82,5 @@ const checkForNewTweets = async () => {
 // Set interval to check for new tweets every 5 minutes
 setInterval(checkForNewTweets, 5 * 60 * 1000);
 ```
+
+Educational purposes only
